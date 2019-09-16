@@ -25,6 +25,7 @@ Public Class CFG
         Dim NewRule As New Rule
         AddVerbs = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = " V"
+
         NewRule.SentenceStr = New List(Of String)
         NewRule.SentenceStr.Add(" BARK")
         NewRule.SentenceStr.Add(" PURR")
