@@ -1,4 +1,17 @@
 ﻿
+
+'"S" ["NP VP", "Interj NP VP"],
+'"NP": ["Det N", "Det N that VP", "Det Adj N", "Det N PP"],
+'"PP": ["Prep NP"],
+'"Prep": ["in", "on", "over", "against"],
+'"VP": ["Vtrans NP", "Vintr"],
+'"Interj": ["oh,", "my,", "wow,", "damn,"],
+'"Det": ["this", "that", "the"],
+'"N": ["amoeba", "dichotomy", "seagull", "trombone", "corsage", "restaurant", "suburb"],
+'"Adj": ["bald", "smug", "important", "tame", "overstaffed", "luxurious", "blue"],
+'"Vtrans": ["computes", "examines", "foregrounds", "prefers", "interprets", "spins"],
+'"Vintr": ["coughs", "daydreams", "whines", "slobbers", "vocalizes", "sneezes"]
+
 Public Class ContextFreeGrammar
     ''' <summary>
     ''' Toy grammar
@@ -29,8 +42,85 @@ Public Class ContextFreeGrammar
         NewRule.SentenceType.PartOfSpeech = "$S$"
 
         NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("THE $N$ $V$ $PUNCT$")
+        NewRule.SentenceStr.Add("$DET$ $N$ $V$ $PUNCT$")
+        NewRule.SentenceStr.Add("$NP$ $V$ $PUNCT$")
+
         AddSentences.Add(NewRule)
+    End Function
+    ''' <summary>
+    ''' Prepositional phrases to be added (Toy) grammar
+    ''' </summary>
+    ''' <returns></returns>
+    Private Shared Function AddPrepositionalPhrases() As List(Of Rule)
+        Dim NewRule As New Rule
+        AddPrepositionalPhrases = New List(Of Rule)
+        NewRule.SentenceType.PartOfSpeech = "$PP$"
+        '"Prep": ["in", "on", "over", "against"],
+        NewRule.SentenceStr = New List(Of String)
+        NewRule.SentenceStr.Add(" $PREP$ $NP$")
+        AddPrepositionalPhrases.Add(NewRule)
+    End Function
+    ''' <summary>
+    ''' Prepositions to be added (Toy) grammar
+    ''' </summary>
+    ''' <returns></returns>
+    Private Shared Function AddPrepositions() As List(Of Rule)
+        Dim NewRule As New Rule
+        AddPrepositions = New List(Of Rule)
+        NewRule.SentenceType.PartOfSpeech = "$PREP$"
+        '"Prep": ["in", "on", "over", "against"],
+        NewRule.SentenceStr = New List(Of String)
+        NewRule.SentenceStr.Add(" IN")
+        NewRule.SentenceStr.Add(" ON")
+        NewRule.SentenceStr.Add(" AGAINST")
+        AddPrepositions.Add(NewRule)
+    End Function
+    ''' <summary>
+    ''' Verbs to be added (Toy) grammar
+    ''' </summary>
+    ''' <returns></returns>
+    Private Shared Function AddAdjectives() As List(Of Rule)
+        Dim NewRule As New Rule
+        AddAdjectives = New List(Of Rule)
+        NewRule.SentenceType.PartOfSpeech = "$ADJ$"
+        '"Adj": ["bald", "smug", "important", "tame", "overstaffed", "luxurious", "blue"],
+        NewRule.SentenceStr = New List(Of String)
+        NewRule.SentenceStr.Add(" BALD")
+        NewRule.SentenceStr.Add(" SMUG")
+        NewRule.SentenceStr.Add(" TAME")
+        AddAdjectives.Add(NewRule)
+    End Function
+    ''' <summary>
+    ''' Determiners to be added (Toy) grammar
+    ''' </summary>
+    ''' <returns></returns>
+    Private Shared Function AddDeterminers() As List(Of Rule)
+        Dim NewRule As New Rule
+        AddDeterminers = New List(Of Rule)
+        NewRule.SentenceType.PartOfSpeech = "$DET$"
+
+        NewRule.SentenceStr = New List(Of String)
+        NewRule.SentenceStr.Add(" The")
+        NewRule.SentenceStr.Add(" This")
+        NewRule.SentenceStr.Add(" That")
+
+        AddDeterminers.Add(NewRule)
+    End Function
+    ''' <summary>
+    ''' NounPhrase to be added (Toy) grammar
+    ''' </summary>
+    ''' <returns></returns>
+    Private Shared Function AddNounPhrases() As List(Of Rule)
+        Dim NewRule As New Rule
+        AddNounPhrases = New List(Of Rule)
+        NewRule.SentenceType.PartOfSpeech = "$NP$"
+
+        NewRule.SentenceStr = New List(Of String)
+        NewRule.SentenceStr.Add(" $DET$ $N$")
+        NewRule.SentenceStr.Add(" $DET$ $N$ $PP$")
+        NewRule.SentenceStr.Add(" $DET$ $ADJ$ $N$")
+
+        AddNounPhrases.Add(NewRule)
     End Function
     ''' <summary>
     ''' Verbs to be added (Toy) grammar
@@ -71,6 +161,11 @@ Public Class ContextFreeGrammar
         AddRules.AddRange(AddNouns)
         AddRules.AddRange(AddSentences)
         AddRules.AddRange(AddPunctuation)
+        AddRules.AddRange(AddAdjectives)
+        AddRules.AddRange(AddDeterminers)
+        AddRules.AddRange(AddNounPhrases)
+        AddRules.AddRange(AddPrepositionalPhrases)
+        AddRules.AddRange(AddPrepositions)
     End Function
     ''' <summary>
     ''' Rule set / Grammar
