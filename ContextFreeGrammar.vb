@@ -13,79 +13,66 @@
 '"Vintr": ["coughs", "daydreams", "whines", "slobbers", "vocalizes", "sneezes"]
 
 Public Class ContextFreeGrammar
-    ''' <summary>
-    ''' Toy grammar
-    ''' </summary>
-    Public Shared CFG_Rules As List(Of Rule) = Add_TOY_GRAMMAR()
+
+#Region "iNTERNAL GRAMMAR"
     ''' <summary>
     ''' Standard grammar
     ''' </summary>
-    Public Shared BASIC_GRAMMAR As List(Of Rule) = AddRules()
+    Private BASIC_GRAMMAR As List(Of Rule) = AddRules()
+    ''' <summary>
+    ''' USED AS A STANDARD TEMPLATE FOR CREATING GRAMAR-SET ;
+    ''' THIS IS A UNPOPULATED SET, EACH TERM REQUIRES AT LEAST 2 WORD STRINGS
+    ''' </summary>
+    ''' <returns></returns>
+    Public ReadOnly Property StandardGrammar As List(Of Rule)
+        Get
+            Return BASIC_GRAMMAR
+        End Get
+    End Property
+#End Region
 
+#Region "TOY GRAMMAR"
+    ''' <summary>
+    ''' Toy grammar for testing purposes
+    ''' </summary>
+    Public CFG_Rules As List(Of Rule) = Add_TOY_GRAMMAR()
+    ''' <summary>
+    ''' Returns a Toy grammar to populate a ruleset, With basic grammar-set 
+    ''' </summary>
+    ''' <returns>Additions for standard grammarset (toy grmmar)</returns>
+    Public Function Add_TOY_GRAMMAR() As List(Of Rule)
+        Dim TOY_GRAMMAR As List(Of Rule) = AddRules()
 
-
-    Public Shared Function Add_TOY_GRAMMAR() As List(Of Rule)
-        Dim TOY_GRAMMAR = New List(Of Rule)
-        TOY_GRAMMAR.AddRange(AddPrepositionalPhrases)
-        TOY_GRAMMAR.AddRange(AddNounPhrases)
-        TOY_GRAMMAR.AddRange(AddSentences)
         Dim NewRule As New Rule
 
-        NewRule.SentenceType.PartOfSpeech = "$N$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("HORSE")
-        NewRule.SentenceStr.Add("LION")
-        NewRule.SentenceStr.Add("MAN")
-        NewRule.SentenceStr.Add("BOY")
-        NewRule.SentenceStr.Add("Girl")
-        NewRule.SentenceStr.Add("WOMAN")
-        TOY_GRAMMAR.Add(NewRule)
+
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "HORSE", "$N$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "DOG", "$N$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "CAT", "$N$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "LION", "$N$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "TIGER", "$N$")
+
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "KICKS", "$V$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "ROARS", "$V$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "BARKS", "$V$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "PURRS", "$V$")
+
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "MIGHT EAT", "$VP$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "MIGHT BITE", "$VP$")
+
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "THE", "$DET$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "A", "$DET$")
 
 
-        NewRule.SentenceType.PartOfSpeech = "$V$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("KICK")
-        NewRule.SentenceStr.Add("KISS")
-        NewRule.SentenceStr.Add("Purrs")
-        NewRule.SentenceStr.Add("Barks")
-        NewRule.SentenceStr.Add("Sleeps")
-        NewRule.SentenceStr.Add("Runs")
-        TOY_GRAMMAR.Add(NewRule)
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "RAGING", "$ADJ$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "HUNTING", "$ADJ$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "FANTASTIC", "$ADJ$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "WONDERFUL", "$ADJ$")
 
-        NewRule.SentenceType.PartOfSpeech = "$VP$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("MIGHT EAT")
-        NewRule.SentenceStr.Add("MUST GO")
-        TOY_GRAMMAR.Add(NewRule)
-
-        NewRule.SentenceType.PartOfSpeech = "$DET$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("THE")
-        NewRule.SentenceStr.Add("A")
-        TOY_GRAMMAR.Add(NewRule)
-
-
-        NewRule.SentenceType.PartOfSpeech = "$ADJ$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("Astonishing")
-        NewRule.SentenceStr.Add("Fabulous")
-        NewRule.SentenceStr.Add("Fantastic")
-        NewRule.SentenceStr.Add("Wonderful")
-        NewRule.SentenceStr.Add("Bald")
-        NewRule.SentenceStr.Add("Smug")
-        NewRule.SentenceStr.Add("Tame")
-        NewRule.SentenceStr.Add("Raging")
-        TOY_GRAMMAR.Add(NewRule)
-
-        NewRule.SentenceType.PartOfSpeech = "$PREP$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("About")
-        NewRule.SentenceStr.Add("Against")
-        NewRule.SentenceStr.Add("For")
-        NewRule.SentenceStr.Add("From")
-        NewRule.SentenceStr.Add("Except")
-        NewRule.SentenceStr.Add("Outside")
-        TOY_GRAMMAR.Add(NewRule)
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "BEFORE", "$PREP$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "AFTER", "$PREP$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "ABOVE", "$PREP$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "BELOW", "$PREP$")
 
         NewRule.SentenceType.PartOfSpeech = "$PUNCT$"
         NewRule.SentenceStr = New List(Of String)
@@ -93,16 +80,18 @@ Public Class ContextFreeGrammar
         NewRule.SentenceStr.Add(".")
         TOY_GRAMMAR.Add(NewRule)
 
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, ".", "$PUNCT$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, ".", "$PUNCT$")
         Return TOY_GRAMMAR
     End Function
+#End Region
 
-
-
+#Region "Internal Grammar"
     ''' <summary>
     ''' Adds Nouns to toy grammar
     ''' </summary>
     ''' <returns></returns>
-    Private Shared Function AddNouns() As List(Of Rule)
+    Private Function AddNouns() As List(Of Rule)
         Dim NewRule As New Rule
         AddNouns = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$N$"
@@ -113,7 +102,7 @@ Public Class ContextFreeGrammar
     ''' Adds Toy grammar
     ''' </summary>
     ''' <returns></returns>
-    Private Shared Function AddSentences() As List(Of Rule)
+    Private Function AddSentences() As List(Of Rule)
         Dim NewRule As New Rule
         AddSentences = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$S$"
@@ -126,7 +115,7 @@ Public Class ContextFreeGrammar
     ''' Prepositional phrases to be added (Toy) grammar
     ''' </summary>
     ''' <returns></returns>
-    Private Shared Function AddPrepositionalPhrases() As List(Of Rule)
+    Private Function AddPrepositionalPhrases() As List(Of Rule)
         Dim NewRule As New Rule
         AddPrepositionalPhrases = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$PP$"
@@ -139,7 +128,7 @@ Public Class ContextFreeGrammar
     ''' Prepositions to be added (Toy) grammar
     ''' </summary>
     ''' <returns></returns>
-    Private Shared Function AddPrepositions() As List(Of Rule)
+    Private Function AddPrepositions() As List(Of Rule)
         Dim NewRule As New Rule
         AddPrepositions = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$PREP$"
@@ -151,7 +140,7 @@ Public Class ContextFreeGrammar
     ''' Adjectives to be added (Toy) grammar
     ''' </summary>
     ''' <returns></returns>
-    Private Shared Function AddAdjectives() As List(Of Rule)
+    Private Function AddAdjectives() As List(Of Rule)
         Dim NewRule As New Rule
         AddAdjectives = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$ADJ$"
@@ -162,7 +151,7 @@ Public Class ContextFreeGrammar
     ''' Determiners to be added (Toy) grammar
     ''' </summary>
     ''' <returns></returns>
-    Private Shared Function AddDeterminers() As List(Of Rule)
+    Private Function AddDeterminers() As List(Of Rule)
         Dim NewRule As New Rule
         AddDeterminers = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$DET$"
@@ -173,7 +162,7 @@ Public Class ContextFreeGrammar
     ''' NounPhrase to be added (Toy) grammar
     ''' </summary>
     ''' <returns></returns>
-    Private Shared Function AddNounPhrases() As List(Of Rule)
+    Private Function AddNounPhrases() As List(Of Rule)
         Dim NewRule As New Rule
         AddNounPhrases = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$NP$"
@@ -199,7 +188,7 @@ Public Class ContextFreeGrammar
     ''' 
     ''' </summary>
     ''' <returns></returns>
-    Private Shared Function AddVerbPhrases() As List(Of Rule)
+    Private Function AddVerbPhrases() As List(Of Rule)
         Dim NewRule As New Rule
         AddVerbPhrases = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$VP$"
@@ -213,7 +202,7 @@ Public Class ContextFreeGrammar
     ''' Punctuation to be added (Toy) grammar
     ''' </summary>
     ''' <returns></returns>
-    Private Shared Function AddPunctuation() As List(Of Rule)
+    Private Function AddPunctuation() As List(Of Rule)
         Dim NewRule As New Rule
         AddPunctuation = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$PUNCT$"
@@ -222,10 +211,10 @@ Public Class ContextFreeGrammar
         AddPunctuation.Add(NewRule)
     End Function
     ''' <summary>
-    ''' Adds Toy grammar
+    ''' Adds Internal Grammar 
     ''' </summary>
     ''' <returns></returns>
-    Private Shared Function AddRules() As List(Of Rule)
+    Private Function AddRules() As List(Of Rule)
         AddRules = New List(Of Rule)
         AddRules.AddRange(AddVerbs)
         AddRules.AddRange(AddNouns)
@@ -238,6 +227,9 @@ Public Class ContextFreeGrammar
         AddRules.AddRange(AddPrepositions)
         AddRules.AddRange(AddVerbPhrases)
     End Function
+#End Region
+
+
     ''' <summary>
     ''' Rule set / Grammar
     ''' </summary>
@@ -260,23 +252,8 @@ Public Class ContextFreeGrammar
         ''' </summary>
         Public SentenceStr As List(Of String)
     End Structure
-    ''' <summary>
-    ''' Adds Rule to Rule-set
-    ''' </summary>
-    ''' <param name="Rules">Grammar </param>
-    ''' <param name="PartOfSpeech">Rule</param>
-    ''' <param name="Word">WordList</param>
-    ''' <returns></returns>
-    Public Shared Function AddRule(ByRef Rules As List(Of Rule), ByRef PartOfSpeech As String, ByRef Word As String) As List(Of Rule)
-        Dim NewRule As New Rule
-        NewRule.SentenceType.PartOfSpeech = PartOfSpeech
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add(" " & Word)
 
-
-        Rules.Add(NewRule)
-        Return Rules
-    End Function
+#Region "MAIN ALGORITHYM"
     ''' <summary>
     ''' Gets Random item from list
     ''' </summary>
@@ -288,6 +265,7 @@ Public Class ContextFreeGrammar
         Randomize()
         ' Generate random value between 1 and 6.
         If Item.Count > 0 Then
+            Randomize()
             value = CInt(Int((Item.Count * Rnd())))
             Return Item(value)
         Else
@@ -302,7 +280,7 @@ Public Class ContextFreeGrammar
     ''' <param name="StartStr">Sentence containing gramar to be expanded</param>
     ''' <param name="Expansion">Expanded Sentence Grammar</param>
     ''' <returns>Expanded Sentence</returns>
-    Private Shared Function Expand(ByRef StartStr As String, ByRef Expansion As String) As String
+    Private Function Expand(ByRef StartStr As String, ByRef Expansion As String) As String
         Dim PickStr As String = ""
         For Each iRule In CFG_Rules
             If StartStr.Contains(iRule.SentenceType.PartOfSpeech) = True Then
@@ -329,7 +307,7 @@ Public Class ContextFreeGrammar
     ''' <param name="StartStr">Sentence Indicator Rule</param>
     ''' <param name="Expansion">Final String</param>
     ''' <returns></returns>
-    Private Shared Function Expand(ByRef CustomRules As List(Of Rule), ByRef StartStr As String, ByRef Expansion As String) As String
+    Private Function Expand(ByRef CustomRules As List(Of Rule), ByRef StartStr As String, ByRef Expansion As String) As String
 
         Dim PickStr As String = ""
         For Each iRule In CustomRules
@@ -355,17 +333,55 @@ Public Class ContextFreeGrammar
     ''' </summary>
     ''' <param name="CFG">Grammar / Ruleset</param>
     ''' <returns>Expanded Sentence</returns>
-    Public Shared Function GenerateRandomSentencefromGramar(ByRef CFG As List(Of Rule)) As String
+#End Region
+
+#Region "FUNCTIONS"
+    ''' <summary>
+    ''' Adds The basic Grammar to given rules
+    ''' </summary>
+    ''' <returns></returns>
+    Public Function AddRules(ByRef Rules As List(Of Rule)) As List(Of Rule)
+        Rules.AddRange(AddVerbs)
+        Rules.AddRange(AddNouns)
+        Rules.AddRange(AddSentences)
+        Rules.AddRange(AddPunctuation)
+        Rules.AddRange(AddAdjectives)
+        Rules.AddRange(AddDeterminers)
+        Rules.AddRange(AddNounPhrases)
+        Rules.AddRange(AddPrepositionalPhrases)
+        Rules.AddRange(AddPrepositions)
+        Rules.AddRange(AddVerbPhrases)
+        Return Rules
+    End Function
+    Public Function GenerateRandomSentencefromGramar(ByRef CFG As List(Of Rule)) As String
+        Randomize()
         Return Expand(CFG, " $S$ ", "")
 
     End Function
     ''' <summary>
-    ''' generates sentence with toy grammar
+    ''' generates sentence with Internal Grammar CFG_RULES
     ''' </summary>
     ''' <returns></returns>
-    Public Shared Function GenerateRandomSentence() As String
-
+    Public Function GenerateRandomSentence() As String
+        Randomize()
         Return Expand(" $S$ ", "")
     End Function
+    ''' <summary>
+    ''' Adds a string to a existing rule; Rules must not be duplicated, all rules must have at least 1 string
+    ''' </summary>
+    ''' <param name="Rules">ruleset / grammar</param>
+    ''' <param name="Str">string to be added / Word / Phrase</param>
+    ''' <param name="PartOfSpeech">Part of Speech to be added to (in custom rulesets this can be a userdefined PartofSpeech)</param>
+    ''' <returns>Populated ruleset</returns>
+    Public Function AddRuleStr(ByRef Rules As List(Of Rule), ByRef Str As String, ByRef PartOfSpeech As String) As List(Of Rule)
+        For Each item In Rules
+            If item.SentenceType.PartOfSpeech = PartOfSpeech = True Then
+                item.SentenceStr.Add(Str)
+            Else
+            End If
+        Next
+        Return Rules
+    End Function
+#End Region
 
 End Class
