@@ -41,17 +41,9 @@ Public Class ContextFreeGrammar
         NewRule.SentenceStr.Add("WOMAN")
         TOY_GRAMMAR.Add(NewRule)
 
-        NewRule.SentenceType.PartOfSpeech = "$NP$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("THE CAT")
-        NewRule.SentenceStr.Add("THE DOG")
-        NewRule.SentenceStr.Add("THE Monster")
-        TOY_GRAMMAR.Add(NewRule)
 
         NewRule.SentenceType.PartOfSpeech = "$V$"
         NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("LIKE")
-        NewRule.SentenceStr.Add("LONG")
         NewRule.SentenceStr.Add("KICK")
         NewRule.SentenceStr.Add("KISS")
         NewRule.SentenceStr.Add("Purrs")
@@ -91,15 +83,14 @@ Public Class ContextFreeGrammar
         NewRule.SentenceStr.Add("Against")
         NewRule.SentenceStr.Add("For")
         NewRule.SentenceStr.Add("From")
-        NewRule.SentenceStr.Add("To")
         NewRule.SentenceStr.Add("Except")
-        NewRule.SentenceStr.Add("In")
         NewRule.SentenceStr.Add("Outside")
         TOY_GRAMMAR.Add(NewRule)
 
         NewRule.SentenceType.PartOfSpeech = "$PUNCT$"
         NewRule.SentenceStr = New List(Of String)
         NewRule.SentenceStr.Add("!")
+        NewRule.SentenceStr.Add(".")
         TOY_GRAMMAR.Add(NewRule)
 
         Return TOY_GRAMMAR
