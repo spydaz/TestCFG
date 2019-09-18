@@ -328,11 +328,7 @@ Public Class ContextFreeGrammar
         Next
         Return Expansion
     End Function
-    ''' <summary>
-    ''' Generates Output from Sentence Grammar String with custome grammar
-    ''' </summary>
-    ''' <param name="CFG">Grammar / Ruleset</param>
-    ''' <returns>Expanded Sentence</returns>
+
 #End Region
 
 #Region "FUNCTIONS"
@@ -353,6 +349,11 @@ Public Class ContextFreeGrammar
         Rules.AddRange(AddVerbPhrases)
         Return Rules
     End Function
+    ''' <summary>
+    ''' Generates Output from Sentence Grammar String with custome grammar
+    ''' </summary>
+    ''' <param name="CFG">Grammar / Ruleset</param>
+    ''' <returns>Expanded Sentence</returns>
     Public Function GenerateRandomSentencefromGramar(ByRef CFG As List(Of Rule)) As String
         Randomize()
         Return Expand(CFG, " $S$ ", "")
