@@ -224,7 +224,6 @@ Public Class ContextFreeGrammar
         NewRule.SentenceStr.Add(".")
         AddPunctuation.Add(NewRule)
     End Function
-
     ''' <summary>
     ''' INTRANSITIVE VERBS
     ''' </summary>
