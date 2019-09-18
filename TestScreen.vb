@@ -1,6 +1,9 @@
 ﻿Public Class TestScreen
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        DisplayText(ContextFreeGrammar.GenerateRandomSentence() & vbNewLine)
+        Dim rules As List(Of ContextFreeGrammar.Rule) = ContextFreeGrammar.CFG_Rules
+
+        Console.WriteLine(rules)
+        DisplayText(ContextFreeGrammar.GenerateRandomSentencefromGramar(rules))
     End Sub
 
     Public Sub DisplayText(ByVal nText As String)
@@ -8,7 +11,7 @@
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim NewStart As String = "$S$"
+        Dim NewStart As String = " $S$ "
 
 
 

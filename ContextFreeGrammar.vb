@@ -16,7 +16,97 @@ Public Class ContextFreeGrammar
     ''' <summary>
     ''' Toy grammar
     ''' </summary>
-    Private Shared CFG_Rules As List(Of Rule) = AddRules()
+    Public Shared CFG_Rules As List(Of Rule) = Add_TOY_GRAMMAR()
+    ''' <summary>
+    ''' Standard grammar
+    ''' </summary>
+    Public Shared BASIC_GRAMMAR As List(Of Rule) = AddRules()
+
+
+
+    Public Shared Function Add_TOY_GRAMMAR() As List(Of Rule)
+        Dim TOY_GRAMMAR = New List(Of Rule)
+        TOY_GRAMMAR.AddRange(AddPrepositionalPhrases)
+        TOY_GRAMMAR.AddRange(AddNounPhrases)
+        TOY_GRAMMAR.AddRange(AddSentences)
+        Dim NewRule As New Rule
+
+        NewRule.SentenceType.PartOfSpeech = "$N$"
+        NewRule.SentenceStr = New List(Of String)
+        NewRule.SentenceStr.Add("HORSE")
+        NewRule.SentenceStr.Add("LION")
+        NewRule.SentenceStr.Add("MAN")
+        NewRule.SentenceStr.Add("BOY")
+        NewRule.SentenceStr.Add("Girl")
+        NewRule.SentenceStr.Add("WOMAN")
+        TOY_GRAMMAR.Add(NewRule)
+
+        NewRule.SentenceType.PartOfSpeech = "$NP$"
+        NewRule.SentenceStr = New List(Of String)
+        NewRule.SentenceStr.Add("THE CAT")
+        NewRule.SentenceStr.Add("THE DOG")
+        NewRule.SentenceStr.Add("THE Monster")
+        TOY_GRAMMAR.Add(NewRule)
+
+        NewRule.SentenceType.PartOfSpeech = "$V$"
+        NewRule.SentenceStr = New List(Of String)
+        NewRule.SentenceStr.Add("LIKE")
+        NewRule.SentenceStr.Add("LONG")
+        NewRule.SentenceStr.Add("KICK")
+        NewRule.SentenceStr.Add("KISS")
+        NewRule.SentenceStr.Add("Purrs")
+        NewRule.SentenceStr.Add("Barks")
+        NewRule.SentenceStr.Add("Sleeps")
+        NewRule.SentenceStr.Add("Runs")
+        TOY_GRAMMAR.Add(NewRule)
+
+        NewRule.SentenceType.PartOfSpeech = "$VP$"
+        NewRule.SentenceStr = New List(Of String)
+        NewRule.SentenceStr.Add("MIGHT EAT")
+        NewRule.SentenceStr.Add("MUST GO")
+        TOY_GRAMMAR.Add(NewRule)
+
+        NewRule.SentenceType.PartOfSpeech = "$DET$"
+        NewRule.SentenceStr = New List(Of String)
+        NewRule.SentenceStr.Add("THE")
+        NewRule.SentenceStr.Add("A")
+        TOY_GRAMMAR.Add(NewRule)
+
+
+        NewRule.SentenceType.PartOfSpeech = "$ADJ$"
+        NewRule.SentenceStr = New List(Of String)
+        NewRule.SentenceStr.Add("Astonishing")
+        NewRule.SentenceStr.Add("Fabulous")
+        NewRule.SentenceStr.Add("Fantastic")
+        NewRule.SentenceStr.Add("Wonderful")
+        NewRule.SentenceStr.Add("Bald")
+        NewRule.SentenceStr.Add("Smug")
+        NewRule.SentenceStr.Add("Tame")
+        NewRule.SentenceStr.Add("Raging")
+        TOY_GRAMMAR.Add(NewRule)
+
+        NewRule.SentenceType.PartOfSpeech = "$PREP$"
+        NewRule.SentenceStr = New List(Of String)
+        NewRule.SentenceStr.Add("About")
+        NewRule.SentenceStr.Add("Against")
+        NewRule.SentenceStr.Add("For")
+        NewRule.SentenceStr.Add("From")
+        NewRule.SentenceStr.Add("To")
+        NewRule.SentenceStr.Add("Except")
+        NewRule.SentenceStr.Add("In")
+        NewRule.SentenceStr.Add("Outside")
+        TOY_GRAMMAR.Add(NewRule)
+
+        NewRule.SentenceType.PartOfSpeech = "$PUNCT$"
+        NewRule.SentenceStr = New List(Of String)
+        NewRule.SentenceStr.Add("!")
+        TOY_GRAMMAR.Add(NewRule)
+
+        Return TOY_GRAMMAR
+    End Function
+
+
+
     ''' <summary>
     ''' Adds Nouns to toy grammar
     ''' </summary>
@@ -26,10 +116,6 @@ Public Class ContextFreeGrammar
         AddNouns = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$N$"
         NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add(" CAT")
-        NewRule.SentenceStr.Add(" DOG")
-        NewRule.SentenceStr.Add(" HORSE")
-        NewRule.SentenceStr.Add(" LION")
         AddNouns.Add(NewRule)
     End Function
     ''' <summary>
@@ -40,11 +126,9 @@ Public Class ContextFreeGrammar
         Dim NewRule As New Rule
         AddSentences = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$S$"
-
         NewRule.SentenceStr = New List(Of String)
         NewRule.SentenceStr.Add("$DET$ $N$ $V$ $PUNCT$")
         NewRule.SentenceStr.Add("$NP$ $V$ $PUNCT$")
-
         AddSentences.Add(NewRule)
     End Function
     ''' <summary>
@@ -60,7 +144,6 @@ Public Class ContextFreeGrammar
         NewRule.SentenceStr.Add(" $PREP$ $NP$")
         AddPrepositionalPhrases.Add(NewRule)
     End Function
-
     ''' <summary>
     ''' Prepositions to be added (Toy) grammar
     ''' </summary>
@@ -71,9 +154,6 @@ Public Class ContextFreeGrammar
         NewRule.SentenceType.PartOfSpeech = "$PREP$"
         '"Prep": ["in", "on", "over", "against"],
         NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add(" IN")
-        NewRule.SentenceStr.Add(" ON")
-        NewRule.SentenceStr.Add(" AGAINST")
         AddPrepositions.Add(NewRule)
     End Function
     ''' <summary>
@@ -84,11 +164,7 @@ Public Class ContextFreeGrammar
         Dim NewRule As New Rule
         AddAdjectives = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$ADJ$"
-        '"Adj": ["bald", "smug", "important", "tame", "overstaffed", "luxurious", "blue"],
         NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add(" BALD")
-        NewRule.SentenceStr.Add(" SMUG")
-        NewRule.SentenceStr.Add(" TAME")
         AddAdjectives.Add(NewRule)
     End Function
     ''' <summary>
@@ -99,12 +175,7 @@ Public Class ContextFreeGrammar
         Dim NewRule As New Rule
         AddDeterminers = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$DET$"
-
         NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add(" The")
-        NewRule.SentenceStr.Add(" This")
-        NewRule.SentenceStr.Add(" That")
-
         AddDeterminers.Add(NewRule)
     End Function
     ''' <summary>
@@ -115,12 +186,10 @@ Public Class ContextFreeGrammar
         Dim NewRule As New Rule
         AddNounPhrases = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$NP$"
-
         NewRule.SentenceStr = New List(Of String)
         NewRule.SentenceStr.Add(" $DET$ $N$")
         NewRule.SentenceStr.Add(" $DET$ $N$ $PP$")
         NewRule.SentenceStr.Add(" $DET$ $ADJ$ $N$")
-
         AddNounPhrases.Add(NewRule)
     End Function
     ''' <summary>
@@ -131,12 +200,7 @@ Public Class ContextFreeGrammar
         Dim NewRule As New Rule
         AddVerbs = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$V$"
-
         NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add(" BARK")
-        NewRule.SentenceStr.Add(" PURR")
-        NewRule.SentenceStr.Add(" ROARS")
-        NewRule.SentenceStr.Add(" CRYS")
         AddVerbs.Add(NewRule)
     End Function
     ''' <summary>
@@ -162,7 +226,6 @@ Public Class ContextFreeGrammar
         Dim NewRule As New Rule
         AddPunctuation = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$PUNCT$"
-
         NewRule.SentenceStr = New List(Of String)
         NewRule.SentenceStr.Add(".")
         AddPunctuation.Add(NewRule)
@@ -182,6 +245,7 @@ Public Class ContextFreeGrammar
         AddRules.AddRange(AddNounPhrases)
         AddRules.AddRange(AddPrepositionalPhrases)
         AddRules.AddRange(AddPrepositions)
+        AddRules.AddRange(AddVerbPhrases)
     End Function
     ''' <summary>
     ''' Rule set / Grammar
@@ -228,12 +292,18 @@ Public Class ContextFreeGrammar
     ''' <param name="Item"></param>
     ''' <returns></returns>
     Public Shared Function GetRandomfromListStr(ByVal Item As List(Of String)) As String
-
+        Dim value As Integer = 0
         ' Initialize the random-number generator.
         Randomize()
         ' Generate random value between 1 and 6.
-        Dim value As Integer = CInt(Int((Item.Count * Rnd())))
-        Return Item(value)
+        If Item.Count > 0 Then
+            value = CInt(Int((Item.Count * Rnd())))
+            Return Item(value)
+        Else
+            Return ""
+        End If
+
+
     End Function
     ''' <summary>
     ''' Expands grammar to Words
@@ -242,11 +312,12 @@ Public Class ContextFreeGrammar
     ''' <param name="Expansion">Expanded Sentence Grammar</param>
     ''' <returns>Expanded Sentence</returns>
     Private Shared Function Expand(ByRef StartStr As String, ByRef Expansion As String) As String
+        Dim PickStr As String = ""
         For Each iRule In CFG_Rules
             If StartStr.Contains(iRule.SentenceType.PartOfSpeech) = True Then
                 'If StartStr = iRule.SentenceType.PartOfSpeech = True Then
                 Randomize()
-                Dim PickStr As String = GetRandomfromListStr(iRule.SentenceStr)
+                PickStr = GetRandomfromListStr(iRule.SentenceStr)
                 StartStr = StartStr.Replace(iRule.SentenceType.PartOfSpeech, PickStr)
 
                 For Each item In StartStr.Split(" ")
@@ -269,12 +340,12 @@ Public Class ContextFreeGrammar
     ''' <returns></returns>
     Private Shared Function Expand(ByRef CustomRules As List(Of Rule), ByRef StartStr As String, ByRef Expansion As String) As String
 
-
+        Dim PickStr As String = ""
         For Each iRule In CustomRules
             If StartStr.Contains(iRule.SentenceType.PartOfSpeech) = True Then
                 'If StartStr = iRule.SentenceType.PartOfSpeech = True Then
                 Randomize()
-                Dim PickStr As String = GetRandomfromListStr(iRule.SentenceStr)
+                PickStr = GetRandomfromListStr(iRule.SentenceStr)
                 StartStr = StartStr.Replace(iRule.SentenceType.PartOfSpeech, PickStr)
 
                 For Each item In StartStr.Split(" ")
@@ -288,14 +359,13 @@ Public Class ContextFreeGrammar
         Next
         Return Expansion
     End Function
-
     ''' <summary>
     ''' Generates Output from Sentence Grammar String with custome grammar
     ''' </summary>
     ''' <param name="CFG">Grammar / Ruleset</param>
     ''' <returns>Expanded Sentence</returns>
     Public Shared Function GenerateRandomSentencefromGramar(ByRef CFG As List(Of Rule)) As String
-        Return Expand(CFG, "$S$", "")
+        Return Expand(CFG, " $S$ ", "")
 
     End Function
     ''' <summary>
@@ -303,6 +373,8 @@ Public Class ContextFreeGrammar
     ''' </summary>
     ''' <returns></returns>
     Public Shared Function GenerateRandomSentence() As String
-        Return Expand("$S$", "")
+
+        Return Expand(" $S$ ", "")
     End Function
+
 End Class
