@@ -60,6 +60,7 @@ Public Class ContextFreeGrammar
         NewRule.SentenceStr.Add(" $PREP$ $NP$")
         AddPrepositionalPhrases.Add(NewRule)
     End Function
+
     ''' <summary>
     ''' Prepositions to be added (Toy) grammar
     ''' </summary>
@@ -76,7 +77,7 @@ Public Class ContextFreeGrammar
         AddPrepositions.Add(NewRule)
     End Function
     ''' <summary>
-    ''' Verbs to be added (Toy) grammar
+    ''' Adjectives to be added (Toy) grammar
     ''' </summary>
     ''' <returns></returns>
     Private Shared Function AddAdjectives() As List(Of Rule)
@@ -137,6 +138,21 @@ Public Class ContextFreeGrammar
         NewRule.SentenceStr.Add(" ROARS")
         NewRule.SentenceStr.Add(" CRYS")
         AddVerbs.Add(NewRule)
+    End Function
+    ''' <summary>
+    ''' verb phrases to be added (Toy) grammar
+    ''' 
+    ''' </summary>
+    ''' <returns></returns>
+    Private Shared Function AddVerbPhrases() As List(Of Rule)
+        Dim NewRule As New Rule
+        AddVerbPhrases = New List(Of Rule)
+        NewRule.SentenceType.PartOfSpeech = "$VP$"
+        NewRule.SentenceStr = New List(Of String)
+        NewRule.SentenceStr.Add(" $V$ $NP$")
+        NewRule.SentenceStr.Add(" $V$ $ADJ$")
+        NewRule.SentenceStr.Add(" $V$ $NP$ %PP$")
+        AddVerbPhrases.Add(NewRule)
     End Function
     ''' <summary>
     ''' Punctuation to be added (Toy) grammar
