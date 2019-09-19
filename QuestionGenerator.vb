@@ -61,4 +61,5 @@
 
         AddHow.Add(NewRule)
     End Function
+    'S → Wh-NP VP
 End Class
