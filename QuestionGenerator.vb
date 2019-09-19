@@ -63,3 +63,6 @@
     End Function
     'S → Wh-NP VP
 End Class
+
+'where (place), when (time), why (reason), who (person). 
+'auxiliary verb	+	subject	+	main verb

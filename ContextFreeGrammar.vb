@@ -264,7 +264,7 @@ Public Class ContextFreeGrammar
         NewRule.SentenceType.PartOfSpeech = "$NP$"
         NewRule.SentenceStr = New List(Of String)
         NewRule.SentenceStr.Add(" $DET$ $N$")
-        NewRule.SentenceStr.Add(" $DET$ $ADJ$ $N$")
+        NewRule.SentenceStr.Add(" $ADJ$ $N$")
         AddNounPhrases.Add(NewRule)
     End Function
 #End Region
