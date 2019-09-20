@@ -98,16 +98,18 @@ Public Class ContextFreeGrammar
 
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "THATS GREAT!", "$INTERJ$")
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "WOW AMAZING!", "$INTERJ$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "HORSE", "$N$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "DOG", "$N$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "CAT", "$N$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "LION", "$N$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "TIGER", "$N$")
+
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "HOUSE", "$N$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "BED", "$PNP$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "LION", "$PN$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "DOG", "$PN$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "BOB", "$PNN$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "MAT", "$PNP$")
 
 
 
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "RIDES", "$V$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "CREEPS", "$V$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "RIDE", "$V$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "CREEP", "$V$")
 
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "RED", "$ADJ$")
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "GREEN", "$ADJ$")
@@ -122,10 +124,10 @@ Public Class ContextFreeGrammar
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "AFTER", "$PREP$")
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "ABOVE", "$PREP$")
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "BELOW", "$PREP$")
-        'TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "IN", "$PREP$")
-        'TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "ON", "$PREP$")
-        'TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "OVER", "$PREP$")
-        'TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "OF", "$PREP$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "IN", "$PREP$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "ON", "$PREP$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "OVER", "$PREP$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "OF", "$PREP$")
 
 
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "SLEEPS", "$VITV$")
@@ -183,16 +185,18 @@ Public Class ContextFreeGrammar
         NewRule.SentenceType.PartOfSpeech = "$S$"
         NewRule.SentenceStr = New List(Of String)
         NewRule.SentenceStr.Add("$NP$ $VP$ $PUNCT$")
+        NewRule.SentenceStr.Add("$NP$ $CONJ$ $VP$ $PUNCT$")
+        'NewRule.SentenceStr.Add("$NP$ $VAV$ $VP$ $PUNCT$")
         'NewRule.SentenceStr.Add("$NP$ $VP$, $PP$ $PUNCT$")
         'NewRule.SentenceStr.Add("$NP$ $PP$, $VP$ $PUNCT$")
-        NewRule.SentenceStr.Add("$VAV$ $NP$ $VP$ ?")
-        NewRule.SentenceStr.Add("WHO $VAV$ $NP$ $VP$ ?")
-        NewRule.SentenceStr.Add("WHAT $VAV$ $NP$ $VP$ ?")
-        NewRule.SentenceStr.Add("WHY $VAV$ $NP$ $VP$ ?")
-        NewRule.SentenceStr.Add("WHEN $VAV$ $NP$ $VP$ ?")
-        NewRule.SentenceStr.Add("WHERE $VAV$ $NP$ $VP$ ?")
-        NewRule.SentenceStr.Add("WHICH $VAV$ $NP$ $VP$ ?")
-        NewRule.SentenceStr.Add("HOW $VAV$ $NP$ $VP$ ?")
+        'NewRule.SentenceStr.Add("$VAV$ $NP$ $VP$ ?")
+        'NewRule.SentenceStr.Add("WHO $VAV$ $NP$ $VP$ ?")
+        'NewRule.SentenceStr.Add("WHAT $VAV$ $NP$ $VP$ ?")
+        'NewRule.SentenceStr.Add("WHY $VAV$ $NP$ $VP$ ?")
+        'NewRule.SentenceStr.Add("WHEN $VAV$ $NP$ $VP$ ?")
+        'NewRule.SentenceStr.Add("WHERE $VAV$ $NP$ $VP$ ?")
+        'NewRule.SentenceStr.Add("WHICH $VAV$ $NP$ $VP$ ?")
+        'NewRule.SentenceStr.Add("HOW $VAV$ $NP$ $VP$ ?")
         AddSentences.Add(NewRule)
     End Function
 
@@ -318,7 +322,11 @@ Public Class ContextFreeGrammar
         NewRule.SentenceType.PartOfSpeech = "$NP$"
         NewRule.SentenceStr = New List(Of String)
         NewRule.SentenceStr.Add("$DET$ $N$")
+        NewRule.SentenceStr.Add("$DET$ $PN$")
+        NewRule.SentenceStr.Add("$PNN$")
+        NewRule.SentenceStr.Add("$DET$ $PNP$")
         NewRule.SentenceStr.Add("$DET$ $ADJ$ $N$")
+        NewRule.SentenceStr.Add("$NP$ $CONJ$ $N$,")
         AddNounPhrases.Add(NewRule)
     End Function
 
@@ -354,7 +362,7 @@ Public Class ContextFreeGrammar
     Private Function AddProperNoun_Place() As List(Of Rule)
         Dim NewRule As New Rule
         AddProperNoun_Place = New List(Of Rule)
-        NewRule.SentenceType.PartOfSpeech = "$PNN$"
+        NewRule.SentenceType.PartOfSpeech = "$PNP$"
         NewRule.SentenceStr = New List(Of String)
         NewRule.SentenceStr.Add("$N$")
         AddProperNoun_Place.Add(NewRule)
@@ -400,8 +408,9 @@ Public Class ContextFreeGrammar
         NewRule.SentenceStr.Add(" $VDTRANS$ $NP$")
         NewRule.SentenceStr.Add(" $V$")
         NewRule.SentenceStr.Add(" $V$ $ADV$")
-        NewRule.SentenceStr.Add(" $V$ $NP$ $PP$")
         NewRule.SentenceStr.Add(" $V$ $PP$")
+        NewRule.SentenceStr.Add("$VP$ $CONJ$ $VP$")
+
         AddVerbPhrases.Add(NewRule)
     End Function
 
