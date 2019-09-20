@@ -13,6 +13,28 @@
 '"Vintr": ["coughs", "daydreams", "whines", "slobbers", "vocalizes", "sneezes"]
 '"Vdintr": ["GAVE",]
 Public Class ContextFreeGrammar
+    ''' <summary>
+    ''' Rule set / Grammar
+    ''' </summary>
+    Public Structure Rule
+        ''' <summary>
+        ''' Gramar parameter
+        ''' </summary>
+        Public Structure SentenceComponent
+            ''' <summary>
+            ''' Grammar rule 
+            ''' </summary>
+            Public PartOfSpeech As String
+        End Structure
+        ''' <summary>
+        ''' Grammar Rule parameter
+        ''' </summary>
+        Public SentenceType As SentenceComponent
+        ''' <summary>
+        ''' List of associated Words
+        ''' </summary>
+        Public SentenceStr As List(Of String)
+    End Structure
 
 #Region "iNTERNAL GRAMMAR"
     ''' <summary>
@@ -47,38 +69,33 @@ Public Class ContextFreeGrammar
 
 
         'STANDARD
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "DO", "$AUX$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "DID", "$AUX$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "DOES", "$AUX$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "BE", "$AUX$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "AM", "$AUX$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "IS", "$AUX$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "WERE", "$AUX$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "BEEN", "$AUX$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "BEING", "$AUX$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "HAVE", "$AUX$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "HAS", "$AUX$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "HAD", "$AUX$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "COULD", "$AUX$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "SHOULD", "$AUX$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "MUST", "$AUX$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "MAY", "$AUX$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "MIGHT", "$AUX$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "WILL", "$AUX$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "WOULD", "$AUX$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "DO", "$VAV$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "DID", "$VAV$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "DOES", "$VAV$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "BE", "$VAV$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "AM", "$VAV$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "IS", "$VAV$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "WERE", "$VAV$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "HAVE", "$VAV$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "HAS", "$VAV$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "HAD", "$VAV$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "COULD", "$VAV$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "SHOULD", "$VAV$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "MUST", "$VAV$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "MAY", "$VAV$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "MIGHT", "$VAV$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "WILL", "$VAV$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "WOULD", "$VAV$")
 
         'STANDARD
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "BUT", "$CONJ$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "AND", "$CONJ$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "OR", "$CONJ$")
+
         'STANDARD
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "THE", "$DET$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "A", "$DET$")
+
         'STANDARD
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "!", "$PUNCT$")
 
 
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "WOW", "$INTERJ$")
+
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "THATS GREAT!", "$INTERJ$")
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "WOW AMAZING!", "$INTERJ$")
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "HORSE", "$N$")
@@ -88,9 +105,6 @@ Public Class ContextFreeGrammar
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "TIGER", "$N$")
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "HAT", "$N$")
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "CAR", "$N$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "KICKS", "$V$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "ROARS", "$V$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "BARKS", "$V$")
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "PURRS", "$V$")
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "RED", "$ADJ$")
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "GREEN", "$ADJ$")
@@ -111,12 +125,12 @@ Public Class ContextFreeGrammar
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "OF", "$PREP$")
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "AS", "$PREP$")
 
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "SLEEP", "$VINTR$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "WALK", "$VINTR$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "SLEEP", "$VITV$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "WALK", "$VITV$")
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "LAUGHS", "$VINTRA$")
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "GAVE", "$VDTRANS$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "SEES", "$VTRANS$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "SAW", "$VTRANS$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "SEES", "$VTV$")
+        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "SAW", "$VTV$")
 
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "SOFTLY", "$ADV$")
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "BOLDLY", "$ADV$")
@@ -127,7 +141,32 @@ Public Class ContextFreeGrammar
 #End Region
 
 #Region "Internal Grammar"
+    ''' <summary>
+    ''' Adds Internal Grammar 
+    ''' </summary>
+    ''' <returns></returns>
+    Private Function AddRules() As List(Of Rule)
+        AddRules = New List(Of Rule)
+        AddRules.AddRange(AddVerbs)
+        AddRules.AddRange(AddNouns)
+        AddRules.AddRange(AddDitransitiveVerb)
+        AddRules.AddRange(AddTransitiveVerb)
+        AddRules.AddRange(AddInTransitiveVerb)
+        AddRules.AddRange(AddConjunctions)
+        AddRules.AddRange(AddInterjections)
+        AddRules.AddRange(AddAuxVerbs)
+        AddRules.AddRange(AddSentences)
+        AddRules.AddRange(AddPunctuation)
+        AddRules.AddRange(AddAdjectives)
+        AddRules.AddRange(AddDeterminers)
+        AddRules.AddRange(AddNounPhrases)
+        AddRules.AddRange(AddPrepositionalPhrases)
+        AddRules.AddRange(AddPrepositions)
+        AddRules.AddRange(AddVerbPhrases)
+        AddRules.AddRange(AddAdVerb)
+    End Function
 
+#Region "Sentence components"
     ''' <summary>
     ''' Adds Toy grammar
     ''' </summary>
@@ -137,17 +176,16 @@ Public Class ContextFreeGrammar
         AddSentences = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$S$"
         NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("$VP$ $PUNCT$")
         NewRule.SentenceStr.Add("$NP$ $VP$ $PUNCT$")
-        NewRule.SentenceStr.Add("$NP$ $VP$, $PP$ $PUNCT$")
-        NewRule.SentenceStr.Add("$NP$ $PP$, $VP$ $PUNCT$")
-        NewRule.SentenceStr.Add("$AUX$ $NP$ $VP$ ?")
-        NewRule.SentenceStr.Add("WHO $AUX$ $NP$ $VP$ ?")
-        NewRule.SentenceStr.Add("WHAT $AUX$ $NP$ $VP$ ?")
-        NewRule.SentenceStr.Add("WHY $AUX$ $NP$ $VP$ ?")
-        NewRule.SentenceStr.Add("WHEN $AUX$ $NP$ $VP$ ?")
-        NewRule.SentenceStr.Add("WHERE $AUX$ $NP$ $VP$ ?")
-        NewRule.SentenceStr.Add("WHICH $AUX$ $NP$ $VP$ ?")
+        'NewRule.SentenceStr.Add("$NP$ $VP$, $PP$ $PUNCT$")
+        'NewRule.SentenceStr.Add("$NP$ $PP$, $VP$ $PUNCT$")
+        'NewRule.SentenceStr.Add("$VAV$ $NP$ $VP$ ?")
+        'NewRule.SentenceStr.Add("WHO $VAV$ $NP$ $VP$ ?")
+        'NewRule.SentenceStr.Add("WHAT $VAV$ $NP$ $VP$ ?")
+        'NewRule.SentenceStr.Add("WHY $VAV$ $NP$ $VP$ ?")
+        'NewRule.SentenceStr.Add("WHEN $VAV$ $NP$ $VP$ ?")
+        'NewRule.SentenceStr.Add("WHERE $VAV$ $NP$ $VP$ ?")
+        'NewRule.SentenceStr.Add("WHICH $VAV$ $NP$ $VP$ ?")
         AddSentences.Add(NewRule)
     End Function
 
@@ -163,8 +201,9 @@ Public Class ContextFreeGrammar
         NewRule.SentenceStr.Add(".")
         AddPunctuation.Add(NewRule)
     End Function
+#End Region
 
-#Region "PREPOSITIONS"
+#Region "Extra Components"
     ''' <summary>
     ''' Prepositional phrases to be added (Toy) grammar
     ''' </summary>
@@ -190,20 +229,38 @@ Public Class ContextFreeGrammar
         NewRule.SentenceStr = New List(Of String)
         AddPrepositions.Add(NewRule)
     End Function
-#End Region
+
 
     ''' <summary>
-    ''' Adjectives to be added (Toy) grammar
+    ''' CONJUNCTIONS
     ''' </summary>
     ''' <returns></returns>
-    Private Function AddAdjectives() As List(Of Rule)
+    Private Function AddConjunctions() As List(Of Rule)
         Dim NewRule As New Rule
-        AddAdjectives = New List(Of Rule)
-        NewRule.SentenceType.PartOfSpeech = "$ADJ$"
+        AddConjunctions = New List(Of Rule)
+        NewRule.SentenceType.PartOfSpeech = "$CONJ$"
         NewRule.SentenceStr = New List(Of String)
-        AddAdjectives.Add(NewRule)
+        AddConjunctions.Add(NewRule)
+        'Standards
+        AddConjunctions = AddRuleStr(AddConjunctions, "BUT", "$CONJ$")
+        AddConjunctions = AddRuleStr(AddConjunctions, "AND", "$CONJ$")
+        AddConjunctions = AddRuleStr(AddConjunctions, "OR", "$CONJ$")
     End Function
 
+    ''' <summary>
+    ''' INTERJECTIONS 
+    ''' </summary>
+    ''' <returns></returns>
+    Private Function AddInterjections() As List(Of Rule)
+        Dim NewRule As New Rule
+        AddInterjections = New List(Of Rule)
+        NewRule.SentenceType.PartOfSpeech = "$INTERJ$"
+        NewRule.SentenceStr = New List(Of String)
+        AddInterjections.Add(NewRule)
+        AddInterjections = AddRuleStr(AddInterjections, "WOW", "$INTERJ$")
+    End Function
+
+#End Region
 
     ''' <summary>
     ''' Determiners to be added (Toy) grammar
@@ -215,33 +272,23 @@ Public Class ContextFreeGrammar
         NewRule.SentenceType.PartOfSpeech = "$DET$"
         NewRule.SentenceStr = New List(Of String)
         AddDeterminers.Add(NewRule)
+        'Default (Singular)
+        AddDeterminers = AddRuleStr(AddDeterminers, "THE", "$DET$")
+        AddDeterminers = AddRuleStr(AddDeterminers, "A", "$DET$")
     End Function
 
-
+#Region "Prime Grammar components"
     ''' <summary>
-    ''' CONJUNCTIONS to be added (Toy) grammar
+    ''' Adjectives to be added (Toy) grammar
     ''' </summary>
     ''' <returns></returns>
-    Private Function AddConjunctions() As List(Of Rule)
+    Private Function AddAdjectives() As List(Of Rule)
         Dim NewRule As New Rule
-        AddConjunctions = New List(Of Rule)
-        NewRule.SentenceType.PartOfSpeech = "$CONJ$"
+        AddAdjectives = New List(Of Rule)
+        NewRule.SentenceType.PartOfSpeech = "$ADJ$"
         NewRule.SentenceStr = New List(Of String)
-        AddConjunctions.Add(NewRule)
+        AddAdjectives.Add(NewRule)
     End Function
-
-    ''' <summary>
-    ''' INTERJECTIONS to be added (Toy) grammar
-    ''' </summary>
-    ''' <returns></returns>
-    Private Function AddInterjections() As List(Of Rule)
-        Dim NewRule As New Rule
-        AddInterjections = New List(Of Rule)
-        NewRule.SentenceType.PartOfSpeech = "$INTERJ$"
-        NewRule.SentenceStr = New List(Of String)
-        AddInterjections.Add(NewRule)
-    End Function
-
 #Region "NOUNS"
     ''' <summary>
     ''' Adds Nouns to toy grammar
@@ -263,8 +310,8 @@ Public Class ContextFreeGrammar
         AddNounPhrases = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$NP$"
         NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add(" $DET$ $N$")
-        NewRule.SentenceStr.Add(" $ADJ$ $N$")
+        NewRule.SentenceStr.Add("$DET$ $N$")
+        NewRule.SentenceStr.Add("$DET$ $ADJ$ $N$")
         AddNounPhrases.Add(NewRule)
     End Function
 #End Region
@@ -288,7 +335,7 @@ Public Class ContextFreeGrammar
     Private Shared Function AddAuxVerbs() As List(Of Rule)
         Dim NewRule As New Rule
         AddAuxVerbs = New List(Of Rule)
-        NewRule.SentenceType.PartOfSpeech = "$AUX$"
+        NewRule.SentenceType.PartOfSpeech = "$VAV$"
         NewRule.SentenceStr = New List(Of String)
         AddAuxVerbs.Add(NewRule)
     End Function
@@ -303,9 +350,9 @@ Public Class ContextFreeGrammar
         AddVerbPhrases = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$VP$"
         NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add(" $VINTR$ ")
-        NewRule.SentenceStr.Add(" $VTRANS$ $NP$")
-        NewRule.SentenceStr.Add(" $VDTRANS$ $NP$ $NP$")
+        NewRule.SentenceStr.Add(" $VITV$ ")
+        NewRule.SentenceStr.Add(" $VTV$ $NP$")
+        NewRule.SentenceStr.Add(" $VDTRANS$ $NP$")
         NewRule.SentenceStr.Add(" $V$")
         NewRule.SentenceStr.Add(" $V$ $ADV$")
         NewRule.SentenceStr.Add(" $V$ $NP$ $PP$")
@@ -320,12 +367,14 @@ Public Class ContextFreeGrammar
     Private Function AddInTransitiveVerb() As List(Of Rule)
         Dim NewRule As New Rule
         AddInTransitiveVerb = New List(Of Rule)
-        NewRule.SentenceType.PartOfSpeech = "$VINTR$"
+        NewRule.SentenceType.PartOfSpeech = "$VITV$"
         NewRule.SentenceStr = New List(Of String)
+        NewRule.SentenceStr.Add("$V$")
         AddInTransitiveVerb.Add(NewRule)
+
     End Function
     ''' <summary>
-    ''' INTRANSITIVE VERBS
+    ''' ADDVERB VERBS
     ''' </summary>
     ''' <returns></returns>
     Private Function AddAdVerb() As List(Of Rule)
@@ -342,8 +391,9 @@ Public Class ContextFreeGrammar
     Private Function AddTransitiveVerb() As List(Of Rule)
         Dim NewRule As New Rule
         AddTransitiveVerb = New List(Of Rule)
-        NewRule.SentenceType.PartOfSpeech = "$VTRANS$"
+        NewRule.SentenceType.PartOfSpeech = "$VTV$"
         NewRule.SentenceStr = New List(Of String)
+        NewRule.SentenceStr.Add("$V$")
         AddTransitiveVerb.Add(NewRule)
     End Function
     ''' <summary>
@@ -355,60 +405,16 @@ Public Class ContextFreeGrammar
         AddDitransitiveVerb = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$VDTRANS$"
         NewRule.SentenceStr = New List(Of String)
-
+        NewRule.SentenceStr.Add("$V$")
         AddDitransitiveVerb.Add(NewRule)
     End Function
 #End Region
-
-    ''' <summary>
-    ''' Adds Internal Grammar 
-    ''' </summary>
-    ''' <returns></returns>
-    Private Function AddRules() As List(Of Rule)
-        AddRules = New List(Of Rule)
-        AddRules.AddRange(AddVerbs)
-        AddRules.AddRange(AddNouns)
-        AddRules.AddRange(AddDitransitiveVerb)
-        AddRules.AddRange(AddTransitiveVerb)
-        AddRules.AddRange(AddInTransitiveVerb)
-        AddRules.AddRange(AddConjunctions)
-        AddRules.AddRange(AddInterjections)
-        AddRules.AddRange(AddAuxVerbs)
-        AddRules.AddRange(AddSentences)
-        AddRules.AddRange(AddPunctuation)
-        AddRules.AddRange(AddAdjectives)
-        AddRules.AddRange(AddDeterminers)
-        AddRules.AddRange(AddNounPhrases)
-        AddRules.AddRange(AddPrepositionalPhrases)
-        AddRules.AddRange(AddPrepositions)
-        AddRules.AddRange(AddVerbPhrases)
-        AddRules.AddRange(AddAdVerb)
-    End Function
 #End Region
 
 
-    ''' <summary>
-    ''' Rule set / Grammar
-    ''' </summary>
-    Public Structure Rule
-        ''' <summary>
-        ''' Gramar parameter
-        ''' </summary>
-        Public Structure SentenceComponent
-            ''' <summary>
-            ''' Grammar rule 
-            ''' </summary>
-            Public PartOfSpeech As String
-        End Structure
-        ''' <summary>
-        ''' Grammar Rule parameter
-        ''' </summary>
-        Public SentenceType As SentenceComponent
-        ''' <summary>
-        ''' List of associated Words
-        ''' </summary>
-        Public SentenceStr As List(Of String)
-    End Structure
+#End Region
+
+
 
 #Region "MAIN ALGORITHYM"
     ''' <summary>
@@ -464,7 +470,7 @@ Public Class ContextFreeGrammar
     ''' <param name="StartStr">Sentence Indicator Rule</param>
     ''' <param name="Expansion">Final String</param>
     ''' <returns></returns>
-    Private Function Expand(ByRef CustomRules As List(Of Rule), ByRef StartStr As String, ByRef Expansion As String) As String
+    Public Function Expand(ByRef CustomRules As List(Of Rule), ByRef StartStr As String, ByRef Expansion As String) As String
 
         Dim PickStr As String = ""
         For Each iRule In CustomRules
@@ -494,16 +500,24 @@ Public Class ContextFreeGrammar
     ''' </summary>
     ''' <returns></returns>
     Public Function AddRules(ByRef Rules As List(Of Rule)) As List(Of Rule)
-        Rules.AddRange(AddVerbs)
-        Rules.AddRange(AddNouns)
-        Rules.AddRange(AddSentences)
-        Rules.AddRange(AddPunctuation)
-        Rules.AddRange(AddAdjectives)
-        Rules.AddRange(AddDeterminers)
-        Rules.AddRange(AddNounPhrases)
-        Rules.AddRange(AddPrepositionalPhrases)
-        Rules.AddRange(AddPrepositions)
-        Rules.AddRange(AddVerbPhrases)
+        AddRules = New List(Of Rule)
+        AddRules.AddRange(AddVerbs)
+        AddRules.AddRange(AddNouns)
+        AddRules.AddRange(AddDitransitiveVerb)
+        AddRules.AddRange(AddTransitiveVerb)
+        AddRules.AddRange(AddInTransitiveVerb)
+        AddRules.AddRange(AddConjunctions)
+        AddRules.AddRange(AddInterjections)
+        AddRules.AddRange(AddAuxVerbs)
+        AddRules.AddRange(AddSentences)
+        AddRules.AddRange(AddPunctuation)
+        AddRules.AddRange(AddAdjectives)
+        AddRules.AddRange(AddDeterminers)
+        AddRules.AddRange(AddNounPhrases)
+        AddRules.AddRange(AddPrepositionalPhrases)
+        AddRules.AddRange(AddPrepositions)
+        AddRules.AddRange(AddVerbPhrases)
+        AddRules.AddRange(AddAdVerb)
 
         Return Rules
     End Function
@@ -514,7 +528,7 @@ Public Class ContextFreeGrammar
     ''' <returns>Expanded Sentence</returns>
     Public Function GenerateRandomSentencefromGramar(ByRef CFG As List(Of Rule)) As String
         Randomize()
-        Return Expand(CFG, " $S$ ", "")
+        Return Expand(CFG, "$S$ ", "")
 
     End Function
     ''' <summary>
@@ -523,7 +537,7 @@ Public Class ContextFreeGrammar
     ''' <returns></returns>
     Public Function GenerateRandomSentence() As String
         Randomize()
-        Return Expand(" $S$ ", "")
+        Return Expand(StandardGrammar, "$S$ ", "")
     End Function
     ''' <summary>
     ''' Adds a string to a existing rule; Rules must not be duplicated, all rules must have at least 1 string

@@ -6,7 +6,7 @@
         Dim rules As List(Of ContextFreeGrammar.Rule) = CFG.CFG_Rules
 
         Console.WriteLine(rules.ToString)
-        ' DisplayText(ContextFreeGrammar.GenerateRandomSentencefromGramar(rules))
+        DisplayText(CFG.GenerateRandomSentencefromGramar(rules))
     End Sub
 
     Public Sub DisplayText(ByVal nText As String)
@@ -14,10 +14,6 @@
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim NewStart As String = " $S$ "
-
-
-
         Dim Expansion As String = ""
 
         DisplayText(CFG.GenerateRandomSentence() & vbNewLine)
