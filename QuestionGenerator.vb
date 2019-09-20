@@ -7,7 +7,7 @@
         NewRule.SentenceType.PartOfSpeech = "$WHAT$"
 
         NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add(" What")
+        NewRule.SentenceStr.Add("What")
 
         AddWhat.Add(NewRule)
     End Function
@@ -27,7 +27,7 @@
         NewRule.SentenceType.PartOfSpeech = "$WHEN$"
 
         NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add(" When")
+        NewRule.SentenceStr.Add("When")
 
         AddWhy.Add(NewRule)
     End Function
@@ -37,7 +37,7 @@
         NewRule.SentenceType.PartOfSpeech = "$WHO$"
 
         NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add(" Who")
+        NewRule.SentenceStr.Add("Who")
 
         AddWho.Add(NewRule)
     End Function
@@ -47,7 +47,7 @@
         NewRule.SentenceType.PartOfSpeech = "$WHERE$"
 
         NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add(" Where")
+        NewRule.SentenceStr.Add("Where")
 
         AddWhere.Add(NewRule)
     End Function
@@ -57,7 +57,7 @@
         NewRule.SentenceType.PartOfSpeech = "$HOW$"
 
         NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add(" How")
+        NewRule.SentenceStr.Add("How")
 
         AddHow.Add(NewRule)
     End Function

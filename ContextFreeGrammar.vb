@@ -103,10 +103,9 @@ Public Class ContextFreeGrammar
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "CAT", "$N$")
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "LION", "$N$")
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "TIGER", "$N$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "HAT", "$N$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "CAR", "$N$")
 
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "PURRS", "$V$")
+
+
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "RIDES", "$V$")
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "CREEPS", "$V$")
 
@@ -123,16 +122,15 @@ Public Class ContextFreeGrammar
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "AFTER", "$PREP$")
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "ABOVE", "$PREP$")
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "BELOW", "$PREP$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "IN", "$PREP$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "ON", "$PREP$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "OVER", "$PREP$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "OF", "$PREP$")
+        'TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "IN", "$PREP$")
+        'TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "ON", "$PREP$")
+        'TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "OVER", "$PREP$")
+        'TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "OF", "$PREP$")
 
 
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "SLEEPS", "$VITV$")
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "WALKS", "$VITV$")
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "LAUGHS", "$VINTRA$")
-        TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "GAVE", "$VDTRANS$")
         TOY_GRAMMAR = AddRuleStr(TOY_GRAMMAR, "SEES", "$VTV$")
 
 
@@ -168,6 +166,10 @@ Public Class ContextFreeGrammar
         AddRules.AddRange(AddPrepositions)
         AddRules.AddRange(AddVerbPhrases)
         AddRules.AddRange(AddAdVerb)
+        AddRules.AddRange(AddParticipleVerb)
+        AddRules.AddRange(AddProperNouns)
+        AddRules.AddRange(AddProperNoun_Name)
+        AddRules.AddRange(AddProperNoun_Place)
     End Function
 
 #Region "Sentence components"
@@ -183,13 +185,14 @@ Public Class ContextFreeGrammar
         NewRule.SentenceStr.Add("$NP$ $VP$ $PUNCT$")
         'NewRule.SentenceStr.Add("$NP$ $VP$, $PP$ $PUNCT$")
         'NewRule.SentenceStr.Add("$NP$ $PP$, $VP$ $PUNCT$")
-        'NewRule.SentenceStr.Add("$VAV$ $NP$ $VP$ ?")
-        'NewRule.SentenceStr.Add("WHO $VAV$ $NP$ $VP$ ?")
-        'NewRule.SentenceStr.Add("WHAT $VAV$ $NP$ $VP$ ?")
-        'NewRule.SentenceStr.Add("WHY $VAV$ $NP$ $VP$ ?")
-        'NewRule.SentenceStr.Add("WHEN $VAV$ $NP$ $VP$ ?")
-        'NewRule.SentenceStr.Add("WHERE $VAV$ $NP$ $VP$ ?")
-        'NewRule.SentenceStr.Add("WHICH $VAV$ $NP$ $VP$ ?")
+        NewRule.SentenceStr.Add("$VAV$ $NP$ $VP$ ?")
+        NewRule.SentenceStr.Add("WHO $VAV$ $NP$ $VP$ ?")
+        NewRule.SentenceStr.Add("WHAT $VAV$ $NP$ $VP$ ?")
+        NewRule.SentenceStr.Add("WHY $VAV$ $NP$ $VP$ ?")
+        NewRule.SentenceStr.Add("WHEN $VAV$ $NP$ $VP$ ?")
+        NewRule.SentenceStr.Add("WHERE $VAV$ $NP$ $VP$ ?")
+        NewRule.SentenceStr.Add("WHICH $VAV$ $NP$ $VP$ ?")
+        NewRule.SentenceStr.Add("HOW $VAV$ $NP$ $VP$ ?")
         AddSentences.Add(NewRule)
     End Function
 
@@ -336,25 +339,25 @@ Public Class ContextFreeGrammar
     ''' Adds Nouns to toy grammar
     ''' </summary>
     ''' <returns></returns>
-    Private Function ProperNoun_Name() As List(Of Rule)
+    Private Function AddProperNoun_Name() As List(Of Rule)
         Dim NewRule As New Rule
-        ProperNoun_Name = New List(Of Rule)
+        AddProperNoun_Name = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$PNN$"
         NewRule.SentenceStr = New List(Of String)
         NewRule.SentenceStr.Add("$N$")
-        ProperNoun_Name.Add(NewRule)
+        AddProperNoun_Name.Add(NewRule)
     End Function
     ''' <summary>
     ''' Adds Nouns to toy grammar
     ''' </summary>
     ''' <returns></returns>
-    Private Function ProperNoun_Place() As List(Of Rule)
+    Private Function AddProperNoun_Place() As List(Of Rule)
         Dim NewRule As New Rule
-        ProperNoun_Place = New List(Of Rule)
+        AddProperNoun_Place = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$PNN$"
         NewRule.SentenceStr = New List(Of String)
         NewRule.SentenceStr.Add("$N$")
-        ProperNoun_Place.Add(NewRule)
+        AddProperNoun_Place.Add(NewRule)
     End Function
 #End Region
 #Region "VERBS"
@@ -573,6 +576,10 @@ Public Class ContextFreeGrammar
         AddRules.AddRange(AddPrepositions)
         AddRules.AddRange(AddVerbPhrases)
         AddRules.AddRange(AddAdVerb)
+        AddRules.AddRange(AddParticipleVerb)
+        AddRules.AddRange(AddProperNouns)
+        AddRules.AddRange(AddProperNoun_Name)
+        AddRules.AddRange(AddProperNoun_Place)
 
         Return Rules
     End Function

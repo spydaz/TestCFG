@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TestCFG.ContextFreeGrammar">
+    <Position X="0.5" Y="0.5" Width="3" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Struct Name="TestCFG.ContextFreeGrammar.Rule">
+        <NestedTypes>
+          <Struct Name="TestCFG.ContextFreeGrammar.Rule.SentenceComponent" Collapsed="true">
+            <TypeIdentifier>
+              <NewMemberFileName>ContextFreeGrammar.vb</NewMemberFileName>
+            </TypeIdentifier>
+          </Struct>
+        </NestedTypes>
+        <TypeIdentifier>
+          <NewMemberFileName>ContextFreeGrammar.vb</NewMemberFileName>
+        </TypeIdentifier>
+      </Struct>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>ATAAAAAAAAwgYAAAgABEABAIEQhAgEAAMgQAAACIICA=</HashCode>
+      <FileName>ContextFreeGrammar.vb</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="10" />
+</ClassDiagram>
