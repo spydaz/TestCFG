@@ -116,21 +116,22 @@ Public Class ContextFreeGrammar
         Dim NewRule As New Rule
         AddSentences = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$S$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("$NP$ $VP$ $PUNCT$")
-        NewRule.SentenceStr.Add("$NP$ $CONJ$ $VP$ $PUNCT$")
-        NewRule.SentenceStr.Add("$S$ $CONJ$ $S$")
-        NewRule.SentenceStr.Add("$NP$ $VAV$ $VP$ $PUNCT$")
-        NewRule.SentenceStr.Add("$NP$ $VP$, $PP$ $PUNCT$")
-        NewRule.SentenceStr.Add("$NP$ $PP$, $VP$ $PUNCT$")
-        NewRule.SentenceStr.Add("$VAV$ $NP$ $VP$ ?")
-        NewRule.SentenceStr.Add("$WHO$ $VAV$ $NP$ $VP$ ?")
-        NewRule.SentenceStr.Add("$WHAT$ $VAV$ $NP$ $VP$ ?")
-        NewRule.SentenceStr.Add("$WHY$ $VAV$ $NP$ $VP$ ?")
-        NewRule.SentenceStr.Add("$WHEN$ $VAV$ $NP$ $VP$ ?")
-        NewRule.SentenceStr.Add("$WHERE$ $VAV$ $NP$ $VP$ ?")
-        NewRule.SentenceStr.Add("$WHICH$ $VAV$ $NP$ $VP$ ?")
-        NewRule.SentenceStr.Add("$HOW$ $VAV$ $NP$ $VP$ ?")
+        NewRule.SentenceStr = New List(Of String) From {
+            "$NP$ $VP$ $PUNCT$",
+            "$NP$ $CONJ$ $VP$ $PUNCT$",
+            "$S$ $CONJ$ $S$",
+            "$NP$ $VAV$ $VP$ $PUNCT$",
+            "$NP$ $VP$, $PP$ $PUNCT$",
+            "$NP$ $PP$, $VP$ $PUNCT$",
+            "$VAV$ $NP$ $VP$ ?",
+            "$WHO$ $VAV$ $NP$ $VP$ ?",
+            "$WHAT$ $VAV$ $NP$ $VP$ ?",
+            "$WHY$ $VAV$ $NP$ $VP$ ?",
+            "$WHEN$ $VAV$ $NP$ $VP$ ?",
+            "$WHERE$ $VAV$ $NP$ $VP$ ?",
+            "$WHICH$ $VAV$ $NP$ $VP$ ?",
+            "$HOW$ $VAV$ $NP$ $VP$ ?"
+        }
         AddSentences.Add(NewRule)
     End Function
     ''' <summary>
@@ -141,8 +142,9 @@ Public Class ContextFreeGrammar
         Dim NewRule As New Rule
         AddPunctuation = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$PUNCT$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add(".")
+        NewRule.SentenceStr = New List(Of String) From {
+            "."
+        }
         AddPunctuation.Add(NewRule)
     End Function
 #End Region
@@ -156,8 +158,9 @@ Public Class ContextFreeGrammar
         AddPrepositionalPhrases = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$PP$"
         '"Prep": ["in", "on", "over", "against"],
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("$PREP$ $NP$")
+        NewRule.SentenceStr = New List(Of String) From {
+            "$PREP$ $NP$"
+        }
         AddPrepositionalPhrases.Add(NewRule)
     End Function
     ''' <summary>
@@ -252,13 +255,14 @@ Public Class ContextFreeGrammar
         Dim NewRule As New Rule
         AddNounPhrases = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$NP$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("$DET$ $N$")
-        NewRule.SentenceStr.Add("$DET$ $PN$")
-        NewRule.SentenceStr.Add("$PNN$")
-        NewRule.SentenceStr.Add("$DET$ $PNP$")
-        NewRule.SentenceStr.Add("$DET$ $ADJ$ $N$")
-        NewRule.SentenceStr.Add("$N$ $CONJ$ $N$,")
+        NewRule.SentenceStr = New List(Of String) From {
+            "$DET$ $N$",
+            "$DET$ $PN$",
+            "$PNN$",
+            "$DET$ $PNP$",
+            "$DET$ $ADJ$ $N$",
+            "$N$ $CONJ$ $N$,"
+        }
 
         AddNounPhrases.Add(NewRule)
     End Function
@@ -270,8 +274,9 @@ Public Class ContextFreeGrammar
         Dim NewRule As New Rule
         AddProperNouns = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$PN$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("$N$")
+        NewRule.SentenceStr = New List(Of String) From {
+            "$N$"
+        }
         AddProperNouns.Add(NewRule)
     End Function
     ''' <summary>
@@ -282,8 +287,9 @@ Public Class ContextFreeGrammar
         Dim NewRule As New Rule
         AddProperNoun_Name = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$PNN$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("$N$")
+        NewRule.SentenceStr = New List(Of String) From {
+            "$N$"
+        }
         AddProperNoun_Name.Add(NewRule)
     End Function
     ''' <summary>
@@ -294,8 +300,9 @@ Public Class ContextFreeGrammar
         Dim NewRule As New Rule
         AddProperNoun_Place = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$PNP$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("$N$")
+        NewRule.SentenceStr = New List(Of String) From {
+            "$N$"
+        }
         AddProperNoun_Place.Add(NewRule)
     End Function
 #End Region
@@ -331,13 +338,14 @@ Public Class ContextFreeGrammar
         Dim NewRule As New Rule
         AddVerbPhrases = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$VP$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("$V$")
-        NewRule.SentenceStr.Add("$VTV$ $NP$")
-        NewRule.SentenceStr.Add("$VDTRANS$ $NP$")
-        NewRule.SentenceStr.Add("$V$ $ADV$")
-        NewRule.SentenceStr.Add("$PP$ $V$ ")
-        NewRule.SentenceStr.Add("$VP$ $CONJ$ $VP$")
+        NewRule.SentenceStr = New List(Of String) From {
+            "$V$",
+            "$VTV$ $NP$",
+            "$VDTRANS$ $NP$",
+            "$V$ $ADV$",
+            "$PP$ $V$ ",
+            "$VP$ $CONJ$ $VP$"
+        }
 
         AddVerbPhrases.Add(NewRule)
     End Function
@@ -349,8 +357,9 @@ Public Class ContextFreeGrammar
         Dim NewRule As New Rule
         AddInTransitiveVerb = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$VITV$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("$V$")
+        NewRule.SentenceStr = New List(Of String) From {
+            "$V$"
+        }
         AddInTransitiveVerb.Add(NewRule)
 
     End Function
@@ -373,8 +382,9 @@ Public Class ContextFreeGrammar
         Dim NewRule As New Rule
         AddTransitiveVerb = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$VTV$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("$V$")
+        NewRule.SentenceStr = New List(Of String) From {
+            "$V$"
+        }
         AddTransitiveVerb.Add(NewRule)
     End Function
     ''' <summary>
@@ -385,8 +395,9 @@ Public Class ContextFreeGrammar
         Dim NewRule As New Rule
         AddDitransitiveVerb = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$VDTRANS$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("$V$")
+        NewRule.SentenceStr = New List(Of String) From {
+            "$V$"
+        }
         AddDitransitiveVerb.Add(NewRule)
     End Function
     ''' <summary>
@@ -397,8 +408,9 @@ Public Class ContextFreeGrammar
         Dim NewRule As New Rule
         AddParticipleVerb = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$VPV$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("$V$")
+        NewRule.SentenceStr = New List(Of String) From {
+            "$V$"
+        }
         AddParticipleVerb.Add(NewRule)
     End Function
 
@@ -412,56 +424,63 @@ Public Class ContextFreeGrammar
         Dim NewRule As New Rule
         AddWhat = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$WHAT$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("What")
+        NewRule.SentenceStr = New List(Of String) From {
+            "What"
+        }
         AddWhat.Add(NewRule)
     End Function
     Private Function AddWhy() As List(Of Rule)
         Dim NewRule As New Rule
         AddWhy = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$WHY$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("Why")
+        NewRule.SentenceStr = New List(Of String) From {
+            "Why"
+        }
         AddWhy.Add(NewRule)
     End Function
     Private Function AddWhen() As List(Of Rule)
         Dim NewRule As New Rule
         AddWhen = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$WHEN$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("When")
+        NewRule.SentenceStr = New List(Of String) From {
+            "When"
+        }
         AddWhen.Add(NewRule)
     End Function
     Private Shared Function AddWho() As List(Of Rule)
         Dim NewRule As New Rule
         AddWho = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$WHO$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("Who")
+        NewRule.SentenceStr = New List(Of String) From {
+            "Who"
+        }
         AddWho.Add(NewRule)
     End Function
     Private Shared Function AddWhere() As List(Of Rule)
         Dim NewRule As New Rule
         AddWhere = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$WHERE$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("Where")
+        NewRule.SentenceStr = New List(Of String) From {
+            "Where"
+        }
         AddWhere.Add(NewRule)
     End Function
     Private Shared Function AddHow() As List(Of Rule)
         Dim NewRule As New Rule
         AddHow = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$HOW$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("How")
+        NewRule.SentenceStr = New List(Of String) From {
+            "How"
+        }
         AddHow.Add(NewRule)
     End Function
     Private Shared Function AddWhich() As List(Of Rule)
         Dim NewRule As New Rule
         AddWhich = New List(Of Rule)
         NewRule.SentenceType.PartOfSpeech = "$WHICH$"
-        NewRule.SentenceStr = New List(Of String)
-        NewRule.SentenceStr.Add("Which")
+        NewRule.SentenceStr = New List(Of String) From {
+            "Which"
+        }
         AddWhich.Add(NewRule)
     End Function
 
@@ -476,13 +495,12 @@ Public Class ContextFreeGrammar
     ''' <param name="Item"></param>
     ''' <returns></returns>
     Public Shared Function GetRandomfromListStr(ByVal Item As List(Of String)) As String
-        Dim value As Integer = 0
         ' Initialize the random-number generator.
         Randomize()
         ' Generate random value between 1 and 6.
         If Item.Count > 0 Then
             Randomize()
-            value = CInt(Int((Item.Count * Rnd())))
+            Dim value As Integer = CInt(Int((Item.Count * Rnd())))
             Return Item(value)
         Else
             Return ""
@@ -497,12 +515,14 @@ Public Class ContextFreeGrammar
     ''' <param name="Expansion">Expanded Sentence Grammar</param>
     ''' <returns>Expanded Sentence</returns>
     Public Function Expand(ByRef StartStr As String, ByRef Expansion As String) As String
-        Dim PickStr As String = ""
-        For Each iRule In StandardGrammar
+        For i = 0 To StandardGrammar.Count - 1
+            Dim iRule = StandardGrammar(i)
+
             If StartStr.Contains(iRule.SentenceType.PartOfSpeech) = True Then
                 'If StartStr = iRule.SentenceType.PartOfSpeech = True Then
                 Randomize()
-                PickStr = GetRandomfromListStr(iRule.SentenceStr)
+                Dim PickStr As String = GetRandomfromListStr(iRule.SentenceStr)
+
                 StartStr = StartStr.Replace(iRule.SentenceType.PartOfSpeech, PickStr)
 
                 For Each item In StartStr.Split(" ")
@@ -524,13 +544,13 @@ Public Class ContextFreeGrammar
     ''' <param name="Expansion">Final String</param>
     ''' <returns></returns>
     Public Function Expand(ByRef CustomRules As List(Of Rule), ByRef StartStr As String, ByRef Expansion As String) As String
+        For i = 0 To CustomRules.Count - 1
+            Dim iRule = CustomRules(i)
 
-        Dim PickStr As String = ""
-        For Each iRule In CustomRules
             If StartStr.Contains(iRule.SentenceType.PartOfSpeech) = True Then
                 'If StartStr = iRule.SentenceType.PartOfSpeech = True Then
                 Randomize()
-                PickStr = GetRandomfromListStr(iRule.SentenceStr)
+                Dim PickStr As String = GetRandomfromListStr(iRule)
                 StartStr = StartStr.Replace(iRule.SentenceType.PartOfSpeech, PickStr)
 
                 For Each item In StartStr.Split(" ")
@@ -543,6 +563,10 @@ Public Class ContextFreeGrammar
             End If
         Next
         Return Expansion
+    End Function
+
+    Private Shared Function GetRandomfromListStr(iRule As Rule) As String
+        Return GetRandomfromListStr(iRule.SentenceStr)
     End Function
 
 #End Region
